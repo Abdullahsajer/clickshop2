@@ -30,7 +30,7 @@ INSTALLED_APPS = [
 ]
 
 
-# الوسائط الوسطية (Middleware)
+# الوسائط الوسطية Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -51,7 +51,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates',  # مجلد عام للقوالب
+            BASE_DIR / 'templates',  # ✅ مجلد القوالب الرئيسي لمسارك الجديد
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -98,7 +98,7 @@ USE_TZ = True
 # الملفات الثابتة (static)
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # مجلد للملفات الثابتة العامة
+    BASE_DIR / 'static',  # ✅ مجلد للملفات الثابتة العامة (CSS, JS, IMG)
 ]
 
 
