@@ -15,7 +15,7 @@ ALLOWED_HOSTS = []
 
 # التطبيقات المثبتة
 INSTALLED_APPS = [
-    # تطبيقات Django الأساسية
+    # ✅ تطبيقات Django الأساسية
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -24,9 +24,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # ✅ تطبيقات المشروع المخصصة
-    'accounts',    # إدارة المستخدمين والحسابات
-    'catalog',     # المنتجات والتصنيفات
-    'sales',       # السلة والطلبات والدفع
+    'accounts.apps.AccountsConfig',   # إدارة المستخدمين والحسابات
+    'catalog.apps.CatalogConfig',     # المنتجات والتصنيفات
+    'sales.apps.SalesConfig',         # السلة والطلبات والدفع
 ]
 
 
@@ -51,7 +51,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates',  # ✅ مجلد القوالب الرئيسي لمسارك الجديد
+            BASE_DIR / 'templates',  # ✅ مجلد القوالب الرئيسي
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -96,11 +96,17 @@ USE_TZ = True
 
 
 # الملفات الثابتة (static)
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # ✅ مجلد للملفات الثابتة العامة (CSS, JS, IMG)
+    BASE_DIR / 'static',  # ملفات ثابتة مخصصة داخل المشروع
 ]
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # مكان التجميع عند تشغيل collectstatic
 
 
-# تعريف تلقائي للأعمدة المبدئية في الـ Models
+# ملفات الوسائط (media) لرفع الصور والملفات
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# التعريف الافتراضي للأعمدة داخل قواعد البيانات
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
