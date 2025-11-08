@@ -1,0 +1,109 @@
+<!-- ✅ D:\pythonpro\clickshop2\templates\header.html -->
+<header class="asq-header" role="banner">
+  <div class="top-bar">
+    <div class="container">
+      <span>🚚 شحن سريع لجميع المناطق</span>
+      <span>📞 دعم فني: 920000000</span>
+    </div>
+  </div>
+
+  <div class="main-nav">
+    <div class="container">
+      <a href="/" class="brand">ASQ لقطع غيار السيارات</a>
+      <nav>
+        <a href="/">الرئيسية</a>
+        <a href="/catalog">المنتجات</a>
+        <a href="/offers">العروض</a>
+        <a href="/contact">تواصل معنا</a>
+      </nav>
+      <button id="toggle-menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<style>
+  :root {
+    --blue-dark: #0b3a70;
+    --blue-light: #1d8cf8;
+    --orange: #ff7b27;
+    --bg-light: #f9faff;
+    --text-dark: #1a1a1a;
+  }
+
+  .asq-header {
+    font-family: "Cairo", sans-serif;
+    color: white;
+  }
+
+  .top-bar {
+    background: var(--blue-dark);
+    font-size: 0.9rem;
+    padding: 8px 0;
+  }
+  .top-bar .container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .main-nav {
+    background: linear-gradient(90deg, var(--blue-dark), var(--blue-light));
+    padding: 12px 0;
+  }
+
+  .main-nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+  }
+
+  .main-nav nav a {
+    margin: 0 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+
+  #toggle-menu {
+    display: none;
+    background: none;
+    border: 0;
+    font-size: 1.8rem;
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .main-nav nav {
+      display: none;
+      flex-direction: column;
+      background: var(--blue-light);
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    .main-nav nav a {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    #toggle-menu {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById("toggle-menu").addEventListener("click", function () {
+    const nav = document.querySelector(".main-nav nav");
+    nav.style.display = nav.style.display === "flex" ? "none" : "flex";
+  });
+</script>
