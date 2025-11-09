@@ -54,6 +54,8 @@ class Product(models.Model):
     )
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="السعر")
     stock = models.PositiveIntegerField(default=0, verbose_name="المخزون")
+    image = models.ImageField(upload_to='products/%Y/%m/%d/', null=True, blank=True,
+                              verbose_name="صورة المنتج")  # ✅ تمت الإضافة هنا
     is_active = models.BooleanField(default=True, verbose_name="فعال")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="تاريخ الإضافة")
 
@@ -63,21 +65,3 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class ProductImage(models.Model):
-    product = models.ForeignKey(
-        Product,
-        on_delete=models.CASCADE,
-        related_name='images',
-        verbose_name="المنتج"
-    )
-    image = models.ImageField(upload_to='products/%Y/%m/%d/', verbose_name="صورة")
-    alt_text = models.CharField(max_length=200, blank=True, verbose_name="نص بديل للصورة")
-
-    class Meta:
-        verbose_name = "صورة منتج"
-        verbose_name_plural = "صور المنتجات"
-
-    def __str__(self):
-        return f"صورة لـ {self.product.name}"
