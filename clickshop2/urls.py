@@ -2,20 +2,17 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views  # ← استدعاء دالة home_view
 
 urlpatterns = [
-    # لوحة التحكم
     path('admin/', admin.site.urls),
 
-    # ✅ جعل تطبيق المنتجات هو الصفحة الرئيسية للموقع
-    path('', include('catalog.urls')),  # الصفحة الرئيسية: عرض المنتجات
+    path('', views.home_view, name='home'),  # ← الصفحة الرئيسية
 
-    # ✅ روابط التطبيقات الأخرى
-    path('accounts/', include('accounts.urls')),  # تطبيق الحسابات والمستخدمين
-    path('sales/', include('sales.urls')),        # تطبيق السلة والطلبات
+    path('accounts/', include('accounts.urls')),
+    path('sales/', include('sales.urls')),
 ]
 
-# ✅ دعم ملفات الوسائط (Media) والملفات الثابتة (Static) أثناء التطوير فقط
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
