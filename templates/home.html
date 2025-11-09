@@ -1,9 +1,10 @@
-<!-- ✅ D:\pythonpro\clickshop2\templates\home.html -->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+ 
   <title>الرئيسية | ASQ لقطع غيار السيارات</title>
   <style>
     /* === إعدادات Sticky Footer === */
@@ -40,46 +41,13 @@
       color: #555;
       margin-bottom: 32px;
     }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-    }
-
-    .product-card {
-      background: white;
-      padding: 18px;
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-      transition: transform .2s ease;
-    }
-
-    .product-card:hover {
-      transform: translateY(-6px);
-    }
-
-    .product-card img {
-      border-radius: 8px;
-      width: 100%;
-    }
-
-    .product-card button {
-      background: var(--orange, #ff7a1a);
-      border: none;
-      padding: 10px 18px;
-      color: white;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 8px;
-    }
   </style>
 </head>
 <body>
 
 <div class="wrapper">
 
-  <!-- ✅ الهيدر -->
+  <!-- ✅ الشريط العلوي -->
   {% include 'header.html' %}
 
   <!-- ✅ المحتوى الرئيسي -->
@@ -88,31 +56,12 @@
       <h1>مرحبًا بك في متجر <span>ASQ</span> لقطع غيار السيارات</h1>
       <p class="lead">نوفر لك أفضل قطع الغيار الأصلية والتجارية مع ضمان وسرعة في الشحن</p>
 
-      <div class="product-grid">
-        <!-- بطاقة عرض منتج -->
-        <div class="product-card">
-          <img src="https://via.placeholder.com/300x200" alt="منتج">
-          <h3>فلتر زيت تويوتا</h3>
-          <p>120 ريال</p>
-          <button>أضف للسلة</button>
-        </div>
-        <div class="product-card">
-          <img src="https://via.placeholder.com/300x200" alt="منتج">
-          <h3>فحمات بريك هوندا</h3>
-          <p>85 ريال</p>
-          <button>أضف للسلة</button>
-        </div>
-        <div class="product-card">
-          <img src="https://via.placeholder.com/300x200" alt="منتج">
-          <h3>بواجي نيسان</h3>
-          <p>45 ريال</p>
-          <button>أضف للسلة</button>
-        </div>
-      </div>
+      <!-- ✅ هنا يتم استدعاء قالب المنتجات -->
+      {% include 'catalog-templates/product_list.html' %}
     </div>
   </main>
 
-  <!-- ✅ الفوتر -->
+  <!-- ✅ الشريط السفلي -->
   {% include 'footer.html' %}
 
 </div>
