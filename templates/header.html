@@ -1,21 +1,42 @@
+{% load static %}
+
 <!-- ✅ D:\pythonpro\clickshop2\templates\header.html -->
 <header class="asq-header" role="banner">
   <div class="top-bar">
     <div class="container">
       <span>🚚 شحن سريع لجميع المناطق</span>
-      <span>📞 دعم فني: 920000000</span>
+
+      <!-- ✅ ترحيب بالمستخدم إذا كان مسجل دخول -->
+      {% if user.is_authenticated %}
+        <span>👋 مرحبًا، {{ user.username }} | <a href="{% url 'accounts:logout' %}" class="logout-link">تسجيل خروج</a></span>
+      {% else %}
+        <span>📞 دعم فني: 920000000</span>
+      {% endif %}
     </div>
   </div>
 
   <div class="main-nav">
     <div class="container">
       <a href="/" class="brand">ASQ لقطع غيار السيارات</a>
+
+      <!-- ✅ روابط التنقل -->
       <nav>
         <a href="/">الرئيسية</a>
         <a href="/catalog">المنتجات</a>
         <a href="/offers">العروض</a>
         <a href="/contact">تواصل معنا</a>
+
+        {% if user.is_authenticated %}
+          <!-- المستخدم مسجل -->
+          <a href="{% url 'accounts:logout' %}" class="btn-nav danger">تسجيل خروج</a>
+        {% else %}
+          <!-- المستخدم غير مسجل -->
+          <a href="{% url 'accounts:register' %}" class="btn-nav">إنشاء حساب</a>
+          <a href="{% url 'accounts:login' %}" class="btn-nav">تسجيل دخول</a>
+        {% endif %}
       </nav>
+
+      <!-- ✅ زر القائمة للجوال -->
       <button id="toggle-menu">☰</button>
     </div>
   </div>
@@ -40,9 +61,19 @@
     font-size: 0.9rem;
     padding: 8px 0;
   }
+
   .top-bar .container {
     display: flex;
     justify-content: space-between;
+  }
+
+  .logout-link {
+    color: #ffdd57;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .logout-link:hover {
+    text-decoration: underline;
   }
 
   .main-nav {
@@ -63,11 +94,34 @@
     text-decoration: none;
   }
 
+  .main-nav nav {
+    display: flex;
+    align-items: center;
+  }
+
   .main-nav nav a {
     margin: 0 12px;
     color: white;
     text-decoration: none;
     font-size: 1rem;
+  }
+
+  /* ✅ أزرار روابط الدخول والخروج */
+  .btn-nav {
+    padding: 6px 14px;
+    background: var(--orange);
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  .btn-nav:hover {
+    background: #e56e1f;
+  }
+  .btn-nav.danger {
+    background: #a70000;
+  }
+  .btn-nav.danger:hover {
+    background: #8b0000;
   }
 
   #toggle-menu {
@@ -88,10 +142,12 @@
       right: 0;
       width: 100%;
       text-align: center;
+      padding: 10px 0;
     }
 
     .main-nav nav a {
       padding: 12px 0;
+      width: 100%;
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 

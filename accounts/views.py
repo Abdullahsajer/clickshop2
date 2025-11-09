@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import Profile
+from django.contrib.auth import logout
 
 # ✅ تسجيل مستخدم جديد
 def register_view(request):
@@ -44,3 +45,8 @@ def login_view(request):
             messages.error(request, "بيانات غير صحيحة، حاول مرة أخرى.")
 
     return render(request, "accounts-templates/login.html")
+
+# ✅ تسجيل الخروج
+def logout_view(request):
+    logout(request)
+    return redirect('home')
