@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تفاصيل الطلب | ASQ</title>
+  <style>
+    body {
+      font-family: "Cairo", sans-serif;
+      background: #f1f5f9;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .order-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 6px 12px rgba(0,0,0,.05);
+      max-width: 800px;
+      margin: 0 auto; /* تمركز المحتوى */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background: #0b3a70;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ استدعاء الهيدر -->
+  {% include 'header.html' %}
+
+  <main>
+    <div class="order-box">
+      <h1>تفاصيل الطلب رقم: {{ order.id }}</h1>
+      <p>👤 المستخدم: {{ order.user.username }}</p>
+      <p>📍 العنوان: {{ order.address }}</p>
+      <p>💰 الإجمالي: {{ order.total }} ر.س</p>
+      <p>🚚 الحالة: {{ order.get_status_display }}</p>
+      
+      <table>
+        <tr><th>المنتج</th><th>السعر</th><th>الكمية</th></tr>
+        {% for item in order.items.all %}
+        <tr>
+          <td>{{ item.product }}</td>
+          <td>{{ item.price }} ر.س</td>
+          <td>{{ item.quantity }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </main>
+
+  <!-- ✅ استدعاء الفوتر -->
+  {% include 'footer.html' %}
+
+</body>
+</html>
